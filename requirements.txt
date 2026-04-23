@@ -1,4 +1,0 @@
-ultralytics
-torch
-onnx
-opencv-python
