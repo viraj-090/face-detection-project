@@ -3,3 +3,5 @@ torch
 onnx
 onnxruntime==1.19.2
 opencv-python-headless
+streamlit-webrtc
+av
