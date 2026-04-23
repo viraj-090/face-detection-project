@@ -23,7 +23,7 @@ if mode == 'Image':
                 cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 6)
         st.image(img, channels="BGR")
 
-else mode == 'Video':
+else:
     file = st.file_uploader("Upload video", type=['mp4', 'mov', 'avi'])
     if file:
         suffix1 = file.name.split(".")[-1]
