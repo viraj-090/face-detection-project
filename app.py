@@ -2,9 +2,14 @@
 import streamlit as st
 from ultralytics import YOLO
 import cv2, tempfile
-from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
+from streamlit_webrtc import webrtc_streamer, VideoProcessorBase, RTCConfiguration
 import av
-
+RTC_CONFIGURATION = RTCConfiguration(
+    {"iceServers": [
+        {"urls": ["stun:stun.l.google.com:19302"]},
+        {"urls": ["stun:stun1.l.google.com:19302"]},
+    ]}
+)
 st.title("YOLOv8 Face Detection")
 model = YOLO("runs/detect/train/weights/best.onnx")
 mode = st.radio("Select mode", ['Image', 'Video', 'Webcam'])
@@ -68,5 +73,6 @@ else:
     webrtc_streamer(
         key="face-detection",
         video_processor_factory=FaceDetector,
+        rtc_configuration=RTC_CONFIGURATION,
         media_stream_constraints={"video": True, "audio": False},
     )
